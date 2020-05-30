@@ -10,7 +10,7 @@ const app = express();
 
 server.applyMiddleware({ app });
 
-models.sequelize.sync().then(function () {
+models.sequelize.sync({ force: true }).then(function () {
   app.listen({ port: 8080 }, () =>
     console.log(`🚀 Server ready at http://localhost:8080${server.graphqlPath}`)
   );
