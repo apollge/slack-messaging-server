@@ -1,6 +1,7 @@
+import { ApolloServer } from 'apollo-server-express';
+import cors from 'cors';
 import express from 'express';
 import path from 'path';
-import { ApolloServer } from 'apollo-server-express';
 import { fileLoader } from 'merge-graphql-schemas';
 import { mergeTypeDefs, mergeResolvers } from '@graphql-tools/merge';
 
@@ -20,6 +21,7 @@ const server = new ApolloServer({
   context: { models, user: { id: 1 } },
 });
 const app = express();
+app.use(cors('*'));
 
 server.applyMiddleware({ app });
 
